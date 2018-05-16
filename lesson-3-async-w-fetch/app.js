@@ -41,17 +41,20 @@
     responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
 }
 function addText(data){
-    let htmlContent = '';
-    const firstTitle = data.response.docs[0];
-    if(firstTitle){
-        htmlContent = `<section>
+    const docsArray = data.response.docs;
+    for(var i=0 ; i<docsArray.length; i++){
+        let htmlContent = '';
+        const firstTitle = data.response.docs[i];
+         if(firstTitle){
+             htmlContent = `<section>
             <h1>${firstTitle.headline.main}</h1>
             <p> ${firstTitle.snippet}</p>
-         </section>`;
-    }else{
-        htmlContent = 'Unfortunately, no new was returned for your search.'
+            </section>`;
+        }else{
+         htmlContent = 'Unfortunately, no new was returned for your search.'
+       }
+        responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
     }
-    responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
 }
 function requestError(){
     console.log(e);
